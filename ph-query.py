@@ -95,9 +95,9 @@ def iterate_month_days(year, month):
 
 # Metion the Date and year 
 year = 2023
-month = 2
+month = 3
 for date in iterate_month_days(year, month):
   get_products(date)
   # break; # enable to for the first day of the month
 
-data_frame.to_csv(f"data-FEB-2023.csv", index=False)
+data_frame.to_csv(f"data-MAR-2023.csv", index=False)
