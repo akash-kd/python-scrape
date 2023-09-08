@@ -88,19 +88,24 @@ head_column = ['id','name','tagline','desc','website','category','thumbnail','vo
 
 count = 0
 import time
-for ph_id in range(697,1001):
+for ph_id in range(745,2001):
     record = get_product(ph_id);
     print(" ",count)
     count += 1
     if count > 50:
         count = 0
         print("BREAK ================>")
+        requests.post("https://ntfy.sh/ph-scrape",data=f"Current Count {count}".encode(encoding='utf-8'))
         time.sleep(900)
     if record:
         with open('ph-data.csv', 'a') as csv_object:
             csv = writer(csv_object)
             csv.writerow(record)
             csv_object.close()
+
+
+requests.post("https://ntfy.sh/ph-scrape",data=f"Products Scapred Successfully".encode(encoding='utf-8'))
+
             
 
 
