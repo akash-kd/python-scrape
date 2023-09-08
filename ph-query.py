@@ -94,10 +94,11 @@ def iterate_month_days(year, month):
         current_date += datetime.timedelta(days=1)
 
 # Metion the Date and year 
+months = ['JAN','FEB','MAR','APR','MAY','JUN',"JUL",'AUG','SEP','OCT','NOV','DEV']
 year = 2023
-month = 3
-for date in iterate_month_days(year, month):
-  get_products(date)
-  # break; # enable to for the first day of the month
+for mon in range(1,13):
+  for date in iterate_month_days(year, mon):
+    get_products(date)  
+    # break; # enable to for the first day of the month
 
-data_frame.to_csv(f"data-MAR-2023.csv", index=False)
+  data_frame.to_csv(f"q[{mon}]-data-{months[mon]}-2023.csv", index=False)
