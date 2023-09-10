@@ -81,32 +81,27 @@ from csv import writer
 head_column = ['id','name','tagline','desc','website','category','thumbnail','votes','comments','createdAt','launchedAt']
 
 
-# with open('ph-data.csv', 'a') as csv_object:
-#     csv = writer(csv_object)
-#     csv.writerow(head_column)
-#     csv_object.close()
+with open('ph-data-2.csv', 'a') as csv_object:
+    csv = writer(csv_object)
+    csv.writerow(head_column)
+    csv_object.close()
 
 count = 0
 import time
-for ph_id in range(2000,5001):
+for ph_id in range(5000,10001):
     record = get_product(ph_id);
     print(" ",count)
     count += 1
     if count > 50:
         count = 0
         print("BREAK ================>")
-        requests.post("https://ntfy.sh/ph-scrape",data=f"Current Count".encode(encoding='utf-8'))
+        requests.post("https://ntfy.sh/ph-scrape",data=f"Current Count {ph_id}".encode(encoding='utf-8'))
         time.sleep(900)
     if record:
-        with open('ph-data.csv', 'a') as csv_object:
+        with open('ph-data-2.csv', 'a') as csv_object:
             csv = writer(csv_object)
             csv.writerow(record)
             csv_object.close()
 
 
 requests.post("https://ntfy.sh/ph-scrape",data=f"Products Scapred Successfully".encode(encoding='utf-8'))
-
-            
-
-
-    
